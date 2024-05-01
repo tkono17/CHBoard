@@ -1,0 +1,10 @@
+.MainPanel {
+    margin: 10px 10px 10px 10px;
+    width: 70%;
+    height: 98%;
+    background-color: orange;
+    float: left;
+    display: flex;
+    justify-content: center;
+}
+

@@ -1,0 +1,20 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.App {
+    width: 1500px;
+    height: 800px;
+    min-width: 500px;
+    padding: 5px;
+    background-color: blue;
+}
+
+.LeftPanel {
+    width: 25%;
+    height: 800px;
+    background-color: brown;
+    float: left;
+}
+
