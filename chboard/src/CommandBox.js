@@ -15,19 +15,24 @@ class CommandBox extends React.Component {
     const files = e.currentTarget.files
     if (files && files.length === 1) {
       const file = files[0]
-      this.setState({ fileName: file.name})
       console.log('Opened file ', file.name)
       console.log('App = ', this.props.app)
-      this.props.app.showFile(file.name)
+      this.props.app.showFile(file)
     }
+  }
+
+  onStart() {
+    this.props.app.updateView();
   }
 
   render() {
     return (<div className={styles.CommandBox}>
               <p>Command Box</p>
-              <label for="openSvg">Open SVG  : </label>
+              <label>Open SVG  : 
               <input type="file" id="openSvg" accept="svg"
                      onChange={this.onFileChange.bind(this)}/>
+              </label>
+              <CommandButton name="Start" onChange={this.onStart.bind(this)} />
               <CommandButton name="Open" />
               <CommandButton name="Exit" />
             </div>)

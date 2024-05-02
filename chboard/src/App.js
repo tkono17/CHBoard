@@ -8,12 +8,23 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      fileName: ''
+      file: '',
     };
   }
 
-  showFile(fn) {
-    this.setState({ fileName: fn });
+  showFile(f) {
+    console.log('Show file: ', f)
+    this.setState({ file: f });
+    console.log('In showFile after setState')
+  }
+
+  readFileFinished() {
+    this.setState({file: null})
+  }
+  updateView() {
+    this.setState({
+      updateRequest: true
+    })
   }
   
   render() {
@@ -22,7 +33,7 @@ class App extends React.Component {
         <div className={styles.LeftPanel}>
         <CommandBox app={this}/>
         </div>
-        <MainPanel fileName={this.state.fileName} />
+        <MainPanel file={this.state.file} />
         </div>
     );
   }
