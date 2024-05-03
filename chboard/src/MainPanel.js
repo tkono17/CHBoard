@@ -19,8 +19,9 @@ function MainPanel(props) {
   }
 
   const ballsToSvg = (balls) => {
+    var index=0
     const ballList = balls.map( (bdata) => {
-      return (<circle cx={bdata[0]} cy="0" r="2" />)
+      return (<circle cx={bdata[0]} cy="0" r="2" key={index++} />)
     })
     return (<svg xmlns="http://www.w3c.org/2000/svg" viewBox="-100 -20 200 40" >
       {ballList}
@@ -48,8 +49,8 @@ function MainPanel(props) {
         }
 
       }, 500);
-
     }
+
     reader.onerror = (event) => { PromiseRejectionEvent(event);} 
     reader.readAsText(file)
 
@@ -68,9 +69,8 @@ function MainPanel(props) {
       setFileName(props.jsonFile.name)
       console.log('MainPanel.useEffect: ', props.jsonFile.name)
       readJsonFile(props.jsonFile)
-
     }
-  }, [props.jsonFile])
+  }, [props.jsonFile, props.replayCount])
 
   console.log('MainPanel f=', fileName)
   console.log('  contents=', contents)

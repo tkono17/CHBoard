@@ -29,6 +29,11 @@ class CommandBox extends React.Component {
     }
   }
 
+  onReplayClicked() {
+    console.log('OnReplayClicked member function')
+    this.props.onReplayClicked()
+  }
+
   render() {
     return (<div className={styles.CommandBox}>
               <p>Command Box</p>
@@ -41,8 +46,7 @@ class CommandBox extends React.Component {
                 onChange={this.onJsonFileChange.bind(this)} />
               </label>
               <br />
-              <CommandButton name="Open" />
-              <CommandButton name="Exit" />
+              <CommandButton name="Replay" onClick={this.onReplayClicked.bind(this)} />
             </div>)
   }
 };

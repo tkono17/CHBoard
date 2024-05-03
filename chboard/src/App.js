@@ -9,7 +9,8 @@ class App extends React.Component {
     super();
     this.state = {
       svgFile: null,
-      jsonFile: null
+      jsonFile: null,
+      replayCount: 0
     };
   }
 
@@ -22,7 +23,13 @@ class App extends React.Component {
   updateJsonFile(f) {
     console.log('Show file (JSON): ', f)
     this.setState({ jsonFile: f });
+    this.setState({ jsonReplay: 0})
     console.log('In showFile after setState')
+  }
+
+  replay() {
+    this.setState({ replayCount: this.state.replayCount+1 })
+    console.log('Replay count: ', this.state.replayCount)
   }
 
   readFileFinished() {
@@ -35,9 +42,11 @@ class App extends React.Component {
     return (
         <div className={styles.App}>
         <div className={styles.LeftPanel}>
-          <CommandBox onSvgFileChange={this.updateSvgFile.bind(this)} onJsonFileChange={this.updateJsonFile.bind(this)} />
+          <CommandBox onSvgFileChange={this.updateSvgFile.bind(this)} 
+          onJsonFileChange={this.updateJsonFile.bind(this)} 
+          onReplayClicked={this.replay.bind(this)} />
         </div>
-        <MainPanel svgFile={this.state.svgFile} jsonFile={this.state.jsonFile}/>
+        <MainPanel svgFile={this.state.svgFile} jsonFile={this.state.jsonFile} replayCount={this.state.replayCount} />
         </div>
     );
   }
