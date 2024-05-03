@@ -8,3 +8,6 @@
     justify-content: center;
 }
 
+.MainPanel svg {
+    width: 800px;
+}

@@ -11,28 +11,36 @@ class CommandBox extends React.Component {
     }
   }
   
-  onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const files = e.currentTarget.files
+  onSvgFileChange(event) {
+    const files = event.currentTarget.files
     if (files && files.length === 1) {
       const file = files[0]
       console.log('Opened file ', file.name)
-      console.log('App = ', this.props.app)
-      this.props.app.showFile(file)
+      this.props.onSvgFileChange(file)
     }
   }
 
-  onStart() {
-    this.props.app.updateView();
+  onJsonFileChange(event) {
+    const files = event.currentTarget.files
+    if (files && files.length === 1) {
+      const file = files[0]
+      console.log('Opened file ', file.name)
+      this.props.onJsonFileChange(file)
+    }
   }
 
   render() {
     return (<div className={styles.CommandBox}>
               <p>Command Box</p>
               <label>Open SVG  : 
-              <input type="file" id="openSvg" accept="svg"
-                     onChange={this.onFileChange.bind(this)}/>
+              <input type="file" id="openSvg" accept=".svg"
+                     onChange={this.onSvgFileChange.bind(this)}/>
+              </label><br />
+              <label>Open JSON  : 
+                <input type="file" id="openJson" accept=".json"
+                onChange={this.onJsonFileChange.bind(this)} />
               </label>
-              <CommandButton name="Start" onChange={this.onStart.bind(this)} />
+              <br />
               <CommandButton name="Open" />
               <CommandButton name="Exit" />
             </div>)

@@ -1,42 +1,70 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import styles from './MainPanel.module.css';
 import ImagePanel from './ImagePanel.js';
+import parse from 'html-react-parser';
 
-class MainPanel extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      fileName: 'No file selected', 
-      file: null, 
-      updateRequest: false
+function MainPanel(props) {
+  const [fileName, setFileName] = useState('')
+  const [contents, setContents] = useState('')
+  
+  const readSvgFile = (file) => {
+    var reader = new FileReader();
+    console.log('readSvgFile: ', file)
+    reader.onload = (event) => {
+      const data = parse(event.target.result)
+      setContents(data)
     }
+    reader.onerror = (event) => { PromiseRejectionEvent(event);} 
+    reader.readAsText(file)
   }
 
-  render() {
-    //const svg = (<svg xlmns="http://www.w3c.org/2000/svg" viewBox="-100 -100 200 200"
-    //  width="500px" >
-    //  <rect x="-20" y="-20" width="80" height="50" stroke="blue" fill="pink" />
-    //</svg>)
-    var file = null
-    //this.props.app.readFileFinished()
-
-    var fn = ''
-    if (this.props.file) {
-      console.log('MainPanel.render: ', this.props.file.name)
-      fn = this.props.file.name
-      if (fn !== this.state.fileName) {
-        this.setState({fileName: fn})
-        file = this.props.file
-      }
-    }
-
-    console.log('MainPanel f=', file)
-
-    return (<div className={styles.MainPanel}>
-              <p>File: {fn}</p> <br/>
-              <ImagePanel file={file}/>
-            </div>)
+  const jsonToSvg = (balls) => {
+    //const nBalls = data['numberOfBalls']
+    //const nSteps = data['numberOfSteps']
+    const ballList = balls.map( (bdata) => {
+      return (<circle cx={bdata[0]} cy="0" r="2" />)
+    })
+    return (<svg xmlns="http://www.w3c.org/2000/svg" viewBox="-100 -20 200 40" >
+      {ballList}
+    </svg>)
   }
+
+  const readJsonFile = (file) => {
+    var reader = new FileReader();
+    console.log('readSvgFile: ', file)
+    reader.onload = (event) => {
+      const jdata = JSON.parse(event.target.result)
+      const balls0 = jdata['data'][0]['balls']
+      const svgdata = jsonToSvg(balls0)
+      setContents(svgdata)
+    }
+    reader.onerror = (event) => { PromiseRejectionEvent(event);} 
+    reader.readAsText(file)
+  }
+
+  useEffect( () => {
+    if (props.svgFile) {
+      setFileName(props.svgFile.name)
+      console.log('MainPanel.useEffect: ', props.svgFile.name)
+      readSvgFile(props.svgFile)
+    }
+  }, [props.svgFile])
+
+  useEffect( () => {
+    if (props.jsonFile) {
+      setFileName(props.jsonFile.name)
+      console.log('MainPanel.useEffect: ', props.jsonFile.name)
+      readJsonFile(props.jsonFile)
+    }
+  }, [props.jsonFile])
+
+  console.log('MainPanel f=', fileName)
+  console.log('  contents=', contents)
+
+  return (<div className={styles.MainPanel}>
+          <p>File: {fileName}</p> <br/>
+          <ImagePanel data={contents}/>
+          </div>)
   
 };
 

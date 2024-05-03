@@ -8,32 +8,36 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      file: '',
+      svgFile: null,
+      jsonFile: null
     };
   }
 
-  showFile(f) {
+  updateSvgFile(f) {
     console.log('Show file: ', f)
-    this.setState({ file: f });
+    this.setState({ svgFile: f });
+    console.log('In showFile after setState')
+  }
+
+  updateJsonFile(f) {
+    console.log('Show file (JSON): ', f)
+    this.setState({ jsonFile: f });
     console.log('In showFile after setState')
   }
 
   readFileFinished() {
-    this.setState({file: null})
+    this.setState({svgFile: null})
   }
   updateView() {
-    this.setState({
-      updateRequest: true
-    })
   }
   
   render() {
     return (
         <div className={styles.App}>
         <div className={styles.LeftPanel}>
-        <CommandBox app={this}/>
+          <CommandBox onSvgFileChange={this.updateSvgFile.bind(this)} onJsonFileChange={this.updateJsonFile.bind(this)} />
         </div>
-        <MainPanel file={this.state.file} />
+        <MainPanel svgFile={this.state.svgFile} jsonFile={this.state.jsonFile}/>
         </div>
     );
   }
