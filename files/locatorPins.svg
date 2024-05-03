@@ -1,0 +1,8 @@
+<svg viewBox="-500 -500 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <rect x="-200" y="-200" width="400" height="400" style="none" />
+  <circle cx="-59.16" cy="67.32" r="5" stroke="red" />
+  <circle cx="-59.37" cy="-52.73" r="5" stroke="red" />
+  <circle cx="60.59" cy="-52.92" r="5" stroke="red" />
+  <circle cx="60.77" cy="67.13" r="5" stroke="red" />
+</svg>
+

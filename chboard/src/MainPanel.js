@@ -18,9 +18,7 @@ function MainPanel(props) {
     reader.readAsText(file)
   }
 
-  const jsonToSvg = (balls) => {
-    //const nBalls = data['numberOfBalls']
-    //const nSteps = data['numberOfSteps']
+  const ballsToSvg = (balls) => {
     const ballList = balls.map( (bdata) => {
       return (<circle cx={bdata[0]} cy="0" r="2" />)
     })
@@ -34,12 +32,27 @@ function MainPanel(props) {
     console.log('readSvgFile: ', file)
     reader.onload = (event) => {
       const jdata = JSON.parse(event.target.result)
-      const balls0 = jdata['data'][0]['balls']
-      const svgdata = jsonToSvg(balls0)
-      setContents(svgdata)
+      console.log('jdata in onload: ', jdata)
+      //const nBalls = jdata['numberOfBalls']
+      const nSteps = jdata['numberOfSteps']
+      var istep=0;
+      const processTimeSteps = setInterval( () => {
+        if (istep < nSteps) {
+          const balls0 = jdata['data'][istep]['balls']
+          const svgdata = ballsToSvg(balls0)
+          setContents(svgdata)
+          istep++;
+        } else {
+          clearInterval(processTimeSteps);
+          console.log('Finish time step at ', istep)
+        }
+
+      }, 500);
+
     }
     reader.onerror = (event) => { PromiseRejectionEvent(event);} 
     reader.readAsText(file)
+
   }
 
   useEffect( () => {
@@ -55,6 +68,7 @@ function MainPanel(props) {
       setFileName(props.jsonFile.name)
       console.log('MainPanel.useEffect: ', props.jsonFile.name)
       readJsonFile(props.jsonFile)
+
     }
   }, [props.jsonFile])
 
