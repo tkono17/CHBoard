@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-25 -25 50.0 50.0">
+  <rect x="-19.35" y="-20.75" width="39.5" height="41.1" stroke="blue" stroke-width="0.1" fill="transparent"/>
+  <rect x="-20.70" y="-20.35" width="42.2" height="40.3" stroke="blue" stroke-width="0.1" fill="transparent"/>
+  <path d="M -24 0 H 48 M 23 0.5 L 24 0 M 23 -0.5 L 24 0.0" stroke="black" stroke-width="0.1"/>
+  <path d="M 0.0 -24 V 48 M 0.5 23 L 0.0 24 M -0.5 23 L 0.0 24" stroke="black" stroke-width="0.1"/>
+  <circle cx="-20.58" cy="19.80" r="0.2" fill="red" />
+  <circle cx="-20.58" cy="-20.10" r="0.2" fill="red" />
+  <circle cx="21.38" cy="19.79" r="0.2" fill="red" />
+  <circle cx="21.37" cy="-20.11" r="0.2" fill="red" />
+  <circle cx="-19.10" cy="20.22" r="0.2" fill="red" />
+  <circle cx="-19.17" cy="-20.56" r="0.2" fill="red" />
+  <circle cx="19.90" cy="20.20" r="0.2" fill="red" />
+  <circle cx="19.96" cy="-20.55" r="0.2" fill="red" />
+  <circle cx="-4.00" cy="-0.74" r="0.2" fill="red" />
+  <circle cx="-0.40" cy="-0.68" r="0.2" fill="red" />
+  <circle cx=" 4.94" cy="-0.72" r="0.2" fill="red" />
+  <circle cx="-0.35" cy="-13.62" r="0.2" fill="red" />
+  <circle cx=" 1.10" cy="-13.55" r="0.2" fill="red" />
+  <circle cx="-17.33" cy="-18.00" r="0.2" fill="red" />
+  <circle cx="-17.12" cy="-12.25" r="0.2" fill="red" />
+  <circle cx="-17.51" cy="-2.65" r="0.2" fill="red" />
+  <circle cx="-17.48" cy=" 2.29" r="0.2" fill="red" />
+  <circle cx="-17.10" cy=" 8.00" r="0.2" fill="red" />
+  <circle cx="-17.64" cy="17.53" r="0.2" fill="red" />
+</svg>
